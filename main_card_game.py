@@ -24,3 +24,4 @@ for game in range(10):
     print(f'Winner is: {winner}\n')
 print('')
 War_Game.get_winner()
+check
