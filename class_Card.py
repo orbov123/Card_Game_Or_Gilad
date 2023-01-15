@@ -1,4 +1,4 @@
-# The Card class recives card suit and value.
+# The Card class recives card suit and value representing their size.
 
 class Card:
     def __init__(self,suit:str,value:int):
@@ -6,6 +6,7 @@ class Card:
         self.card_value = value
 
     def __gt__(self,other):
+        """ check greater card """
         if self.card_value > other.card_value:
             if other.card_value ==1:
                 return False
@@ -21,6 +22,7 @@ class Card:
             return False
 
     def __eq__(self, other):
+        """check if cards are equal"""
         if self.card_value==other.card_value:
             if self.card_suit== other.card_suit:
                 return True

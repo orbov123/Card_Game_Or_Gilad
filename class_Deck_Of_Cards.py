@@ -1,5 +1,7 @@
 import class_Card
 import random
+# class Deck_of_cards set a full deck of 52 cards, with no duplicate.
+# by the hierarchy of the values and the suits
 class Deck_Of_Cards:
     def __init__(self):
         self.deck = []
@@ -10,10 +12,12 @@ class Deck_Of_Cards:
                 self.deck.append(class_Card.Card(key,value))
 
     def cards_shuffle(self):
+        """shuffle the deck of cards"""
         random.shuffle(self.deck)
 
 
     def deal_one(self):
+        """return the last card of the deck, and remove it"""
         return self.deck.pop()
 
     def __str__(self):
