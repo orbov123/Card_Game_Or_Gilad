@@ -29,19 +29,28 @@ class TestCard_Game(TestCase):
         self.milhama = Card_Game('OR','GILAD',50)
         self.assertEqual(self.milhama.player1.num_cards_player,26)
 
-
+    def test_new_game_valid(self):
+        """test new_game each player get deck of 26 cards"""
+        self.assertEqual(len(self.game.player1.player_deck),26)
+        self.assertEqual(len(self.game.player2.player_deck),26)
+    def test_new_game_invalid(self):
+        """ test new_game value error when new game is when game began"""
+        game1 = Card_Game('alon','tal',15)
+        with self.assertRaises(ValueError):
+            game1.new_game()
     def test_get_winner_valid_tie(self):
-        """test get winner for a tie """
-        self.game = Card_Game('gilad','tamir')
+        """test get winner for a tie  each player have 26 cards"""
         self.assertEqual(None,self.game.get_winner())
 
     def test_get_winner_valid_player1(self):
+        """test get_winner for player 1 is winner"""
         game1 = Card_Game('gilad','or',10)
         card1 = Card('Heart',7)
         game1.player1.add_card(card1)
         self.assertEqual('gilad',game1.get_winner())
 
-    def test_get_winner_valid_else(self):
+    def test_get_winner_valid_else_player2(self):
+        """test get_winner for player 2 is winner"""
         game1 = Card_Game('gilad','or',10)
         card1 = Card('Heart',7)
         game1.player2.add_card(card1)

@@ -23,6 +23,6 @@ for game in range(10):
     print(f'round {game+1}:\n{player_name_1}: {card_player1}\n{player_name_2}: {card_player2}')
     print(f'Winner is: {winner}\n')
 print('')
-print(War_Game.get_winner())
+print(f'the winner is: {War_Game.get_winner()}')
 
 
