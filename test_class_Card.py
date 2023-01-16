@@ -9,12 +9,16 @@ class TestCard(TestCase):
         print('-----setUp-------')
 
     def test__init__valid(self):
+        """testing if the suit and value valid """
         self.assertEqual(self.card.card_suit,'Heart')
         self.assertEqual(self.card.card_value,10)
 
     def test__init__invalid_type_suit(self):
+        """testing if the type of suit is invalid"""
         with self.assertRaises(TypeError):
             self.card1 = Card(13, 10)
+
+
 
     def test__init__invalid_type_value(self):
         with self.assertRaises(TypeError):

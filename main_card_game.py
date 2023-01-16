@@ -7,7 +7,7 @@ player_name_1 = input("Enter your name: ")
 player_name_2 = input("Enter your opponent name: ")
 War_Game = class_Card_Game.Card_Game(player_name_1,player_name_2)
 #introducing of the players:
-print(f'player1: {player_name_1} ,Deck: {War_Game.player1}\nplayer2: {player_name_2} ,Deck: {War_Game.player2}')
+print(f'player1: {War_Game.player1}\nplayer2: {War_Game.player2}')
 #Beginning of the game:
 for game in range(10):
     card_player1 = War_Game.player1.get_card()
@@ -23,6 +23,6 @@ for game in range(10):
     print(f'round {game+1}:\n{player_name_1}: {card_player1}\n{player_name_2}: {card_player2}')
     print(f'Winner is: {winner}\n')
 print('')
-War_Game.get_winner()
+print(War_Game.get_winner())
 
 

@@ -20,7 +20,9 @@ class Card_Game:
         return f'{self.player1}, {self.player2}'
 
     def new_game(self):
-        """ the function shuffle the deck of cards, and set decks for each player"""
+        """ the function start a new game by shuffle the deck of cards, and set decks for each player"""
+        if len(self.player1.player_deck)>0 or len(self.player2.player_deck)>0:
+            raise ValueError('new game can only be active before a game begin')
         self.deck.cards_shuffle()
         self.player1.set_hand(self.deck)
         self.player2.set_hand(self.deck)
@@ -28,11 +30,11 @@ class Card_Game:
     def get_winner(self):
         """by calculate which player has the bigger deck of cards, the function return the winner of the game"""
         if len(self.player1.player_deck)>len(self.player2.player_deck):
-            print(f"{self.player1.player_name} is the winner! has {len(self.player1.player_deck)} cards")
+            return self.player1.player_name
 
         elif len(self.player1.player_deck) == len(self.player2.player_deck):
             print("it's a tie!")
             return None
 
         else:
-            print(f"{self.player2.player_name} is the winner! ,has {len(self.player2.player_deck)} cards")
+            return self.player2.player_name
