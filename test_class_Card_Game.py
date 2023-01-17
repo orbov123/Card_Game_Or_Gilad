@@ -12,23 +12,31 @@ class TestCard_Game(TestCase):
         self.deck1 = Deck_Of_Cards()
 
     def test__init__valid_name(self):
+        """test init valid,players name"""
         self.assertEqual("alon",self.game.player1.player_name)
         self.assertEqual("meira",self.game.player2.player_name)
 
     def test__init__invalid_player_name(self):
+        """test init invalid,player name must be type string"""
         with self.assertRaises(TypeError):
             game = Card_Game(32,"or")
             game = Card_Game("or",50)
             game = Card_Game(12,24)
 
     def test__init__invalid_type_num_cards(self):
+        """test init invalid type num_cards,must be int"""
         with self.assertRaises(TypeError):
             game = Card_Game('kobi','gilad','or1')
+            game = Card_Game('kobi','gilad','26')
 
     def test_init_invalid_num_cards(self):
-        self.milhama = Card_Game('OR','GILAD',50)
-        self.assertEqual(self.milhama.player1.num_cards_player,26)
-
+        """"test init invalid num_cards_value,must be between 10 to 26"""
+        milhama = Card_Game('OR','GILAD',27)
+        self.assertEqual(milhama.player1.num_cards_player,26)
+        milhama = Card_Game('or','gilad',9)
+        self.assertEqual(milhama.player1.num_cards_player, 26)
+        milhama = Card_Game('or', 'gilad', 50)
+        self.assertEqual(milhama.player1.num_cards_player, 26)
     def test_new_game_valid(self):
         """test new_game each player get deck of 26 cards"""
         self.assertEqual(len(self.game.player1.player_deck),26)

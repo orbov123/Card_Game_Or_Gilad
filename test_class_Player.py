@@ -9,25 +9,32 @@ class TestPlayer(TestCase):
     def setUp(self):
         self.deck1 = Deck_Of_Cards()
         self.omer = Player("omer",26)
-        self.omer.player_deck = []
 
     def test__init__valid(self):
         """test the valid __init__"""
         self.assertEqual("omer",self.omer.player_name)
         self.assertEqual(self.omer.num_cards_player,26)
 
-    def test__init__invalid_type(self):
-        """test the invalid __init__"""
+    def test__init__invalid_type_player_name(self):
+        """test init invalid type player name, must be string"""
         with self.assertRaises(TypeError):
-            omer = Player(15,15)
-            omer = Player("omer","26")
+            guy = Player(15,15)
+            yuval = Player({'yuval':26},26)
 
-    def test__init__invalid_value(self):
-        """test __init__value>26, value<1"""
-        self.gilad = Player("gilad",50)
-        self.assertEqual(self.gilad.num_cards_player, 26)
-        self.gilad = Player("gilad",-10)
-        self.assertEqual(self.gilad.num_cards_player,26)
+    def test__init__invalid_type_num_cards_player(self):
+        """test init invalid type num_cards_player , must be int"""
+        with self.assertRaises(TypeError):
+            guy = Player('guy','26')
+            yuval = Player('yuval',[26])
+
+    def test__init__invalid_num_cards_player_value(self):
+        """test __init__num_cards_player,value>26, value<10"""
+        gilad = Player("gilad",27)
+        self.assertEqual(gilad.num_cards_player, 26)
+        yuval = Player('yuval',9)
+        self.assertEqual(yuval.num_cards_player, 26)
+        gilad = Player("gilad",-10)
+        self.assertEqual(gilad.num_cards_player,26)
 
 
     def test__init__invalid__player_nam_length(self):
@@ -35,11 +42,9 @@ class TestPlayer(TestCase):
         self.gilad = Player("orororororororor,26")
         self.assertEqual(self.gilad.player_name,"ororororor")
 
-
-    def test_set_hand_valid(self):
-        """valid test set hand"""
-        self.omer_deck = Deck_Of_Cards()
-        self.omer.set_hand(self.omer_deck)
+    def test_set_hand_valid_num_cards(self):
+        """valid test set hand num_cards = 26"""
+        self.omer.set_hand(self.deck1)
         self.assertEqual(len(self.omer.player_deck),26)
 
     def test_set_hand_invalid_type(self):
@@ -67,7 +72,7 @@ class TestPlayer(TestCase):
         self.assertEqual(card1,self.omer.player_deck[0])
 
     def test_add_card_invalid(self):
-        """test """
+        """test add_Card invalid, add card add the card in the beginning of the deck.(index 0)"""
         self.omer.set_hand(self.deck1)
         card1 = Card('Heart',8)
         self.omer.add_card(card1)
