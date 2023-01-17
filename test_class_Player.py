@@ -68,6 +68,7 @@ class TestPlayer(TestCase):
 
     def test_add_card_invalid(self):
         """test """
+        self.omer.set_hand(self.deck1)
         card1 = Card('Heart',8)
         self.omer.add_card(card1)
         self.assertNotEqual(card1,self.omer.player_deck[1])

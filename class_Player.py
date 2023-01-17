@@ -26,7 +26,6 @@ class Player:
             self.player_deck.append(deck.deal_one())
 
 
-
     def get_card(self):
         """return the last card of the player deck, and remove it"""
         return self.player_deck.pop()
